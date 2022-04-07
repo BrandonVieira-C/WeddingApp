@@ -15,7 +15,7 @@ export class PartnerLoginService {
 
   public login(partner: Partner): Observable<Partner> {
     let url = environment.partnerApiUrl + '/login';
-    return this.http.post<Partner>(url, partner, {headers: this.headers});
+    return this.http.post<Partner>(url, partner, { headers: this.headers });
   }
 
 }

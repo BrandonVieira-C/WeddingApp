@@ -6,6 +6,7 @@ public class BackyardDTO {
   private Integer backyardRating;
   private String backyardCity;
   private Integer backyardCost;
+  private Integer partnerId;
   
   // -----------------------------------------------------------------------------------------------------------
 
@@ -38,6 +39,12 @@ public class BackyardDTO {
   }
   public void setBackyardCost(Integer backyardCost) {
     this.backyardCost = backyardCost;
+  }
+  public Integer getPartnerId() {
+    return partnerId;
+  }
+  public void setPartnerId(Integer partnerId) {
+    this.partnerId = partnerId;
   }
 
 

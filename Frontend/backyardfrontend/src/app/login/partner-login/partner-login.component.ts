@@ -44,8 +44,8 @@ export class PartnerLoginComponent implements OnInit {
     this.loginPartner = this.loginPartnerForm.value as Partner;
 
     this.partnerLoginService.login(this.loginPartner).subscribe({
-      next: msg => {
-        this.loginPartner = msg;
+      next: response => {
+        this.loginPartner = response;
 
         sessionStorage.setItem('loggedInPartner', JSON.stringify(this.loginPartner)); //some bug here in name towards 'loggedInPartner'
 
@@ -53,9 +53,9 @@ export class PartnerLoginComponent implements OnInit {
         
         this.tryToLogin = false;
         this.router.navigate(['/partner-dashboard']);
-      }, error: msg => {
+      }, error: response => {
         this.tryToLogin = false;
-        this.errMsg = <any>msg;
+        this.errMsg = response;
       }
     })
   }
