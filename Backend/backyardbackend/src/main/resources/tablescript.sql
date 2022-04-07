@@ -20,7 +20,7 @@ CREATE TABLE partner (
 
 CREATE TABLE backyard (
   backyard_id INT AUTO_INCREMENT,
-  backyard_description VARCHAR(25),
+  backyard_description VARCHAR(150),
   backyard_rating INT,
   backyard_city VARCHAR(25),
   backyard_cost INT,

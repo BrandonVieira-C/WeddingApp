@@ -21,10 +21,13 @@ import { CustomerCreateEventService } from './dashboard/customer-dashboard/creat
 import { ShowAllEventsService } from './dashboard/customer-dashboard/show-all-events/show-all-events.service';
 import { CustomerDashboardService } from './dashboard/customer-dashboard/customer-dashboard.service';
 import { UpdateEventComponent } from './dashboard/customer-dashboard/update-event/update-event.component';
+import { HomeComponent } from './home/home.component';
+import { HomeService } from './home/home.service';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     PartnerLoginComponent,
     PartnerSignupComponent,
     PartnerDashboardComponent,
@@ -34,7 +37,6 @@ import { UpdateEventComponent } from './dashboard/customer-dashboard/update-even
     CustomerCreateEventComponent,
     ShowAllEventsComponent,
     UpdateEventComponent
-    
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,7 @@ import { UpdateEventComponent } from './dashboard/customer-dashboard/update-even
     AppRoutingModule
   ],
   providers: [
+    HomeService,
     PartnerLoginService,
     PartnerSignupService,
     CustomerDashboardService,

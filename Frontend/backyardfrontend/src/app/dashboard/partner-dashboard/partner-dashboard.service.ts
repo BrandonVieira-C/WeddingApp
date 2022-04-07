@@ -10,6 +10,7 @@ import { environment } from "src/environments/environment";
 })
 
 export class PartnerDashboardService {
+  private headers = new HttpHeaders({ 'Content-Type': 'application/json' }) // for passing err/success message from backend to html
 
   constructor(private http: HttpClient) { }
 
@@ -17,6 +18,14 @@ export class PartnerDashboardService {
     let url: string = environment.partnerApiUrl + '/getallbackyards/' + partnerId;
     return this.http.get<Backyard[]>(url);
   }
-  
 
+  public addPartnerBackyard(backyard: Backyard): Observable<string> { //return type string to allow success/err msg
+    let url: string = environment.partnerApiUrl + '/addbackyard';
+    return this.http.post<string>(url, backyard, { headers: this.headers, responseType: 'text' as 'json' });
+  }
+
+  public deletePartnerBackyard(backyardId: number): Observable<string> {
+    let url: string = environment.partnerApiUrl + '/deletebackyard/' + backyardId;
+    return this.http.delete<string>(url, { headers: this.headers, responseType: 'text' as 'json' });
+  }
 }
