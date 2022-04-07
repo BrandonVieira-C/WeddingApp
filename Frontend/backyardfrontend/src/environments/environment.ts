@@ -7,7 +7,8 @@ const APPLICATION_NAME: string = '/wedding'
 
 export const environment = {
   production: false,
-  partnerApiUrl : apiBaseUrl + APPLICATION_NAME + '/partner-api'
+  partnerApiUrl : apiBaseUrl + APPLICATION_NAME + '/partner-api',
+  customerApiUrl: apiBaseUrl + APPLICATION_NAME + '/customer-api'
 };
 
 /*
