@@ -1,0 +1,36 @@
+
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-bordered">
+          
+          <thead>
+            <tr>
+              <th scope="col">backyard id</th>
+              <th scope="col">description</th>
+              <th scope="col">rating</th>
+              <th scope="col">city</th>
+              <th scope="col">cost</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr *ngFor="let backyard of backyardsInDB">
+              <th scope="col" ><a [routerLink]="['/customer-create-event']">{{backyard.backyardId}}</a></th>
+              <td>{{backyard.backyardDescription}}</td>
+              <td>{{backyard.backyardRating}}</td>
+              <td>{{backyard.backyardCity}}</td>
+              <td>{{backyard.backyardCost}}</td>
+            </tr>
+          </tbody>
+  
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <div class="btn-toolbar" style="padding-left: 15px">
+    <button routerLink="/show-all-events" class="btn btn-primary mx-2">Show All Events</button>
+  
+    <button routerLink="/customer-login" class="btn btn-danger mx-2">Logout</button>
+  </div>
