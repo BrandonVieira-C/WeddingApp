@@ -45,15 +45,18 @@
                 <th scope="col">Last name</th>
               </tr>
             </thead>
-            <!-- <tbody>
-              <tr *ngFor="let partner of partnersInDB">
-                <th scope="row">customerId</th>
-                <td>{{partner.firstName}}</td>
-                <td>{{partner.lastName}}</td>
+            <tbody>
+              <tr *ngFor="let customer of customerInDB">
+                <th scope="row">{{customer.customerId}}</th>
+                <td>{{customer.firstName}}</td>
+                <td>{{customer.lastName}}</td>
+                <td>
+                  <button class="btn" (click)="onDeleteCustomer(customer.customerId)"><i class="fa fa-trash"></i></button>
+                </td>
               </tr>
-            </tbody> -->
+            </tbody>
           </table>
-          <!-- <a href="/partner-login" class="btn btn-success pull-right">Login as partner</a> -->
+          <a href="/customer-login" class="btn btn-success pull-right">Login as customer</a>
         </div>
       </div>
 

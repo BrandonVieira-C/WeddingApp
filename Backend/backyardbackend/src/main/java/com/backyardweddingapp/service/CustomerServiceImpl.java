@@ -4,11 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.backyardweddingapp.dto.BackyardDTO;
 import com.backyardweddingapp.dto.CustomerDTO;
 import com.backyardweddingapp.dto.EventDTO;
+import com.backyardweddingapp.entity.Backyard;
 import com.backyardweddingapp.entity.Customer;
 import com.backyardweddingapp.entity.Event;
 import com.backyardweddingapp.exception.BackyardWeddingException;
+import com.backyardweddingapp.repository.BackyardRepository;
 import com.backyardweddingapp.repository.CustomerRepository;
 import com.backyardweddingapp.repository.EventRepository;
 
@@ -25,6 +28,9 @@ public class CustomerServiceImpl implements CustomerService {
 
   @Autowired
   private EventRepository eventRepository;
+  
+  @Autowired
+  private BackyardRepository backyardRepository;
 
   @Override
   public Integer addCustomer(CustomerDTO customerDTO) throws BackyardWeddingException {
@@ -176,4 +182,31 @@ public class CustomerServiceImpl implements CustomerService {
 	  return eventDtoList;
   }
 
+public String deleteCustomer(Integer customerId) throws BackyardWeddingException {
+	Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new BackyardWeddingException("Could not find customer with that ID"));
+
+	customerRepository.delete(customer);	
+	return "Account deleted.";	
+
+}
+
+public List<BackyardDTO> getAllBackyards() throws BackyardWeddingException {
+	List<Backyard> backyardEntityList = (List<Backyard>) backyardRepository.findAll();
+	if (backyardEntityList.isEmpty()) {
+		throw new BackyardWeddingException("No backyards found.");
+	}
+	
+	List<BackyardDTO> dtoList = new LinkedList<BackyardDTO>();
+	backyardEntityList.forEach(entity -> {
+		BackyardDTO dto = new BackyardDTO();
+		dto.setBackyardCity(entity.getBackyardCity());
+		dto.setBackyardCost(entity.getBackyardCost());
+		dto.setBackyardDescription(entity.getBackyardDescription());
+		dto.setBackyardId(entity.getBackyardId());
+		dto.setBackyardRating(entity.getBackyardRating());
+		dto.setPartnerId(entity.getPartnerId());
+		dtoList.add(dto);
+	});
+	return dtoList;
+}
 }

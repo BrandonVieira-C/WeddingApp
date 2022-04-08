@@ -19,7 +19,7 @@ const routes: Routes=[
   { path: 'customer-login', component: CustomerLoginComponent},
   { path: 'customer-signup', component: CustomerSignupComponent},
   { path: 'customer-dashboard', component: CustomerDashboardComponent},
-  { path: 'customer-create-event', component: CustomerCreateEventComponent},
+  { path: 'customer-create-event/:backyardId', component: CustomerCreateEventComponent},
   { path: 'show-all-events', component: ShowAllEventsComponent}
 ]
 

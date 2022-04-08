@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
+import { Customer } from "../shared/entity/Customer";
 import { Partner } from "../shared/entity/Partner";
 
 
@@ -24,4 +25,11 @@ export class HomeService {
     return this.http.delete<string>(url, { headers: this.headers, responseType: 'text' as 'json' });
   }
 
+  public getAllCustomers():Observable<Customer[]> {
+    return this.http.get<Customer[]>(environment.customerApiUrl+'/getAllCustomers');
+  }
+
+  public deleteCustomer(customerId: number): Observable<string> {
+    return this.http.delete<string>((environment.customerApiUrl+"/deletecustomer/"+customerId), { headers: this.headers, responseType: 'text' as 'json' });
+  }
 }

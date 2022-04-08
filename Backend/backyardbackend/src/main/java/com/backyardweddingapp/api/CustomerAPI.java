@@ -1,5 +1,6 @@
 package com.backyardweddingapp.api;
 
+import com.backyardweddingapp.dto.BackyardDTO;
 import com.backyardweddingapp.dto.CustomerDTO;
 import com.backyardweddingapp.dto.EventDTO;
 import com.backyardweddingapp.entity.Event;
@@ -82,5 +83,19 @@ public class CustomerAPI {
 	  List<EventDTO> eventDtoList = customerService.getAllEventsForCustomer(customerId);
 	  return new ResponseEntity<>(eventDtoList, HttpStatus.OK);
   }
+  
+  @DeleteMapping(value="/deletecustomer/{customerId}")
+	public ResponseEntity<String> deleteCustomer (@PathVariable("customerId") Integer customerId) throws BackyardWeddingException {
+		String d = customerService.deleteCustomer(customerId);
+		return new ResponseEntity<>(d, HttpStatus.OK);
+	}
+  
+  @GetMapping(value="/getallbackyards")
+  public ResponseEntity<List<BackyardDTO>> getAllBackyards() throws BackyardWeddingException {
+	  List<BackyardDTO> response =  customerService.getAllBackyards();
+	  return new ResponseEntity<>(response,HttpStatus.OK);
+  }
+  
+  
 
 }
