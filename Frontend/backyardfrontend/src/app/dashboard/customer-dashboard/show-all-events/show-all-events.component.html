@@ -20,7 +20,8 @@
               <td>{{event.eventDate}}</td>
               <td>{{event.backyardId}}</td>
               <td><app-update-event [event]="event" (notify)="showUpdateForm(event)"></app-update-event>
-                  <button (click)="delete(event)">delete</button></td>                 
+                  <button class="btn btn-danger" (click)="delete(event)"><i class="fa fa-trash"></i></button>
+                </td>                 
             </tr>
           </tbody>
 

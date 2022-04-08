@@ -16,7 +16,7 @@
   
           <tbody>
             <tr *ngFor="let backyard of backyardsInDB">
-              <th scope="col" ><a [routerLink]="['/customer-create-event']">{{backyard.backyardId}}</a></th>
+              <th scope="col" ><a [routerLink]="['/customer-create-event', backyard.backyardId]">{{backyard.backyardId}}</a></th>
               <td>{{backyard.backyardDescription}}</td>
               <td>{{backyard.backyardRating}}</td>
               <td>{{backyard.backyardCity}}</td>

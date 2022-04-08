@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from 'src/app/shared/entity/Customer';
 import { Events } from 'src/app/shared/entity/Event';
 import { CustomerCreateEventService } from './customer-create-event.service';
@@ -17,12 +17,17 @@ export class CustomerCreateEventComponent implements OnInit {
   newEvent: Events;
   customerId: number;
   createEventForm: FormGroup;
+  chosenBackyardID: number;
 
 
   constructor(private fb: FormBuilder, private customerCreateService: CustomerCreateEventService,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const routeParam = this.route.snapshot.paramMap;
+    this.chosenBackyardID = Number(routeParam.get("backyardId"));
+
     this.getLoggedInCustomer();
     this.createEventFormMethod();
   }
@@ -31,7 +36,7 @@ export class CustomerCreateEventComponent implements OnInit {
   this.createEventForm = this.fb.group({
     eventName: ['', Validators.required],
     eventDate: ['', Validators.required],
-    backyardId: ['', Validators.required]
+    backyardId: [this.chosenBackyardID, Validators.required]
   });
 }
 

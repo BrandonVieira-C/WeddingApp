@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Customer } from '../shared/entity/Customer';
 import { Partner } from '../shared/entity/Partner';
 import { HomeService } from './home.service';
 
@@ -15,11 +16,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllPartner();
+    this.getAllCustomers();
   }
 
   /* ====================================================================================================================================================== */
   // Function to get all registered partners
   partnersInDB: Partner[];
+
 
   public getAllPartner(): void {
     this.homeService.getAllPartner().subscribe({
@@ -43,13 +46,40 @@ export class HomeComponent implements OnInit {
         this.getAllPartner();
       }, error: response => {
         console.log(response.message);
-        this.errMsg = <any> response;
+        this.errMsg = <any>response;
       }
     })
   }
 
+  /* ====================================================================================================================================================== */
 
+  customerInDB: Customer[];
 
+  getAllCustomers() {
+    this.homeService.getAllCustomers().subscribe(
+      (success) => { this.customerInDB = success },
+      (error) => {
+        this.errMsg = error,
+          console.log(error);
+      }
+    );
+  }
+
+  /* ====================================================================================================================================================== */
+
+  onDeleteCustomer(customerId: number) {
+    this.homeService.deleteCustomer(customerId).subscribe(
+      (success) => {
+        this.successMsg = success;
+        this.getAllCustomers();
+        console.log(success);
+      },
+      (error) => {
+        this.errMsg = error,
+        console.log(error);
+      }
+    );
+  }
 
 
 
